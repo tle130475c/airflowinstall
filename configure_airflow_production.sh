@@ -25,8 +25,8 @@ printf "AIRFLOW_BIN=${AIRFLOW_BIN}\n" | sudo tee -a $AIRFLOW_SYSCONFIG
 sudo tee /etc/systemd/system/airflow-api-server.service << EOF
 [Unit]
 Description=Airflow API server daemon
-After=network.target postgresql.service mysql.service redis.service rabbitmq-server.service
-Wants=postgresql.service mysql.service redis.service rabbitmq-server.service
+After=network.target docker.service
+Wants=docker.service
 
 [Service]
 EnvironmentFile=${AIRFLOW_SYSCONFIG}
@@ -46,8 +46,8 @@ EOF
 sudo tee /etc/systemd/system/airflow-scheduler.service << EOF
 [Unit]
 Description=Airflow scheduler daemon
-After=network.target postgresql.service mysql.service redis.service rabbitmq-server.service
-Wants=postgresql.service mysql.service redis.service rabbitmq-server.service
+After=network.target docker.service
+Wants=docker.service
 
 [Service]
 EnvironmentFile=${AIRFLOW_SYSCONFIG}
@@ -66,8 +66,8 @@ EOF
 sudo tee /etc/systemd/system/airflow-dag-processor.service << EOF
 [Unit]
 Description=Airflow DAG processor daemon
-After=network.target postgresql.service mysql.service redis.service rabbitmq-server.service
-Wants=postgresql.service mysql.service redis.service rabbitmq-server.service
+After=network.target docker.service
+Wants=docker.service
 
 [Service]
 EnvironmentFile=${AIRFLOW_SYSCONFIG}
@@ -86,8 +86,8 @@ EOF
 sudo tee /etc/systemd/system/airflow-triggerer.service << EOF
 [Unit]
 Description=Airflow triggerer daemon
-After=network.target postgresql.service mysql.service redis.service rabbitmq-server.service
-Wants=postgresql.service mysql.service redis.service rabbitmq-server.service
+After=network.target docker.service
+Wants=docker.service
 
 [Service]
 EnvironmentFile=${AIRFLOW_SYSCONFIG}
